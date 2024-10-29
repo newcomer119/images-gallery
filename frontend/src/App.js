@@ -5,6 +5,7 @@ import Header from "./Components/Header";
 import Search from "./Components/Search";
 import ImageCard from "./Components/ImageCard";
 import { Container, Row, Col } from "react-bootstrap";
+import Welcome from "./Components/Welcome";
 
 // const UNSPALASH_API = process.env.REACT_UNSPLASH_API_KEY; THIS WAS NOT WORKING I TRIED TO CORRECT IT
 // ... existing code ...
@@ -31,23 +32,25 @@ const App = () => {
   };
 
   const handleDeleteImage = (id) => {
-      setImages(images.filter((image) => image.id !== id))
-  }
+    setImages(images.filter((image) => image.id !== id));
+  };
 
   return (
     <div className="App">
       <Header title="Images Gallery" />
       <Search word={word} setWord={setWord} handleSubmit={handleSearchSubmit} />
-      {/* THIS CLASS MT-4 GIVES MARGIN T MEANS TOP IN BOOTSTRAP */}
-      <Container className="mt-4"> 
-        <Row xs={1} md={2} lg={3}>
-          {images &&
-            images.map((image, i) => (
-              <Col key={i} className="pb-4">  
-                <ImageCard image={image} deleteImage={handleDeleteImage}/> 
+      <Container className="mt-4">
+        {!images.length ? (
+          <Welcome />
+        ) : (
+          <Row xs={1} md={2} lg={3}>
+            {images.map((image) => (
+              <Col key={image.id} className="pb-4">
+                <ImageCard image={image} deleteImage={handleDeleteImage} />
               </Col>
             ))}
-        </Row>
+          </Row>
+        )}
       </Container>
     </div>
   );

@@ -8,7 +8,7 @@ const Header = ({ title }) => {
     <Navbar bg="primary" data-bs-theme="light">
         <Container>
             {/* <Navbar.Brand href="/">{title}</Navbar.Brand> */}
-            <Logo style={{ maxWidth : '20rem', maxHeight : '4rem'}}/>
+            <Logo alt={title} style={{ maxWidth : '20rem', maxHeight : '4rem'}}/>
         </Container>
     </Navbar>
   );
